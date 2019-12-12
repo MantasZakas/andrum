@@ -19,6 +19,6 @@
     }
   },
   "config": {
-    "devUrl": "http://andrum.local"
+    "devUrl": "http://example.test"
   }
 }

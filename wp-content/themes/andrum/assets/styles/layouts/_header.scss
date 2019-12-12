@@ -1,7 +1,32 @@
+$header_height: 80px;
+
 .header {
-	background:blue;
-	
-	&-menu {
-		
+	&__top {
+		height: 30px;
+		p {
+			font-size: 12px;
+			margin: 0;
+			line-height: 30px;
+		}
+	}
+	&__dash {
+		background: black;
+		height: 1px;
+		width: 40px;
+		margin: 0 20px;
+	}
+	&__nav {
+		background: $_BACKGROUND;
+		height: $header_height;
+	}
+	&__link {
+		color: white;
+		font-size: 16px;
+		line-height: $header_height;
+		transition: 500ms;
+	}
+	&__link:hover {
+		color: $_ACTIVE;
+		border-bottom: solid 2px $_ACTIVE;
 	}
 }
