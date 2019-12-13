@@ -1,0 +1,11 @@
+.footer {
+	&__container {
+		background: $_BACKGROUND;
+		color: white;
+		padding-top: 60px;
+	}
+	&__heading {
+		font-size: 18px;
+		line-height: 24px;
+	}	
+}
