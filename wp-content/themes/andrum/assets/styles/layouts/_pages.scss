@@ -1,0 +1,59 @@
+.fakeimage {
+	height: 380px;
+	width: 380px;
+	background-image: linear-gradient(yellow, black);
+	position: absolute;
+	z-index: -1;
+}
+.page {
+	&__title {
+		&--main {
+			font-size: 30px;
+			color: $_MAIN;
+			margin-top: 60px;
+		}
+		&--name {
+			font-size: 24px;
+			color: $_MAIN;
+			margin-top: 20px;
+		}
+		&--position {
+			font-size: 16px;
+			color: $_MAIN;
+			margin-top: 10px;
+			padding-bottom: 40px;
+		}
+	}
+	&__card {
+		margin-top: 40px;
+	}
+	&__description {
+		background: transparent;
+		color: transparent;
+		transition: 1000ms;
+		&--top {
+			height: 380px;
+			width: 380px;
+			padding: 56px 30px 0 30px;
+		}
+		&--text1 {
+			font-size: 14px !important;
+			font-family: Montserrat;
+			line-height: 1.43;
+		}
+		&--text1 {
+			font-size: 16px !important;
+			font-family: PlayfairDisplay;
+			line-height: 1.38;
+		}
+	}
+	&__description:hover{
+		background: $_MAIN;
+		opacity: 0.9;
+		color: white;
+	}
+	&__description:hover *{
+		transition: 500ms;
+		color: white;
+	}
+}

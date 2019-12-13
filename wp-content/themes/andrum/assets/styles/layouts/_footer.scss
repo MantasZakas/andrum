@@ -1,8 +1,9 @@
 .footer {
 	&__container {
-		background: $_BACKGROUND;
+		background: $_MAIN;
 		color: white;
 		padding-top: 60px;
+		margin-top: 60px;
 	}
 	&__heading {
 		font-size: 18px;
