@@ -24,9 +24,16 @@ $header_height: 80px;
 		font-size: 16px;
 		line-height: $header_height;
 		transition: 500ms;
+		&--active {
+			border-bottom: solid 2px $_ACTIVE;
+		}
 	}
 	&__link:hover {
 		color: $_ACTIVE;
 		border-bottom: solid 2px $_ACTIVE;
+	}
+	&__logo {
+		width: 165px;
+  		height: 56px;
 	}
 }
