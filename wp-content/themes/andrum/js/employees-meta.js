@@ -4,7 +4,22 @@ window.onload = function() {
 	moreButton.addEventListener("click", function() {
 		fieldCount.value++;
 		let newInput = document.createElement('div');
-		newInput.innerHTML = '<label for="employee-' + fieldCount.value + '">Employee no. ' + fieldCount.value + ':</label> <input name="employee-' + fieldCount.value + '" type="text">';
+		let newEmployeeNo = fieldCount.value;
+		newInput.innerHTML = 		
+			'<p>Employee no. ' + newEmployeeNo + ':</p>'+
+			'<label for="employee-' + newEmployeeNo + '-name">Name:</label>'+
+			'<input name="employee-' + newEmployeeNo + '-name" type="text">'+
+			'<label for="employee-' + newEmployeeNo + '-position">Position:</label>'+
+			'<input name="employee-' + newEmployeeNo + '-position" type="text">'+
+			'<br>'+
+			'<label for="employee-' + newEmployeeNo + '-description">Description:</label>'+
+			'<br>'+
+			'<textarea rows="4" cols="60" name="employee-' + newEmployeeNo + '-description"></textarea>'+
+			'<br>'+
+			'<label for="employee-' + newEmployeeNo + '-qoute">Qoute:</label>'+
+			'<br>'+
+			'<textarea rows="4" cols="60" name="employee-' + newEmployeeNo + '-qoute"></textarea>'+
+			'<hr>';
 		moreButton.parentNode.insertBefore(newInput, moreButton);
 	});
 }

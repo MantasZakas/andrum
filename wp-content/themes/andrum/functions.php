@@ -48,15 +48,27 @@ add_filter ( 'nav_menu_link_attributes', function ($atts) {
 }, 100, 1 );
 
 //add metaboxes for employees
-	function employees_meta($page) {
+function employees_meta($page) {
 	wp_nonce_field(basename(__FILE__), "employees-nonce");
 	$totalEmployees = 5;
 	if (get_post_meta($page->ID, "employeeCount", true) > 5)
 		$totalEmployees = get_post_meta($page->ID, "employeeCount", true);
 		for ($i=1; $i<=$totalEmployees; $i++ ) {?>
 			<div>
-				<label for="employee-<?= $i?>">Employee no. <?= $i?>:</label>
-				<input name="employee-<?= $i?>" type="text" value="<?php echo get_post_meta($page->ID, "employee-$i", true) ?>">
+				<p>Employee no. <?= $i?>:</p>
+				<label for="employee-<?= $i?>-name">Name:</label>
+				<input name="employee-<?= $i?>-name" type="text" value="<?php echo get_post_meta($page->ID, "employee-$i-name", true) ?>">
+				<label for="employee-<?= $i?>-position">Position:</label>
+				<input name="employee-<?= $i?>-position" type="text" value="<?php echo get_post_meta($page->ID, "employee-$i-position", true) ?>">
+				<br>
+				<label for="employee-<?= $i?>-description">Description:</label>
+				<br>
+				<textarea rows="4" cols="60" name="employee-<?= $i?>-description"><?php echo get_post_meta($page->ID, "employee-$i-description", true) ?></textarea>
+				<br>
+				<label for="employee-<?= $i?>-qoute">Qoute:</label>
+				<br>
+				<textarea rows="4" cols="60" name="employee-<?= $i?>-qoute"><?php echo get_post_meta($page->ID, "employee-$i-qoute", true) ?></textarea>
+				<hr>
 			</div>
 		<?php } ?>
 	<button type="button" id="addMore" class="components-button editor-post-preview is-button is-default is-large" style="margin-top: 5px">Add new employee</button>
@@ -95,10 +107,25 @@ add_action("save_post", function($post_id, $post, $update) {
 	$j = 1; //count filled fields
 	if (isset($_POST['fieldCount'])) $totalEmployees = wp_kses_post($_POST['fieldCount']);
 	for ($i=1; $i<=$totalEmployees; $i++ ) {
-		if (isset($_POST["employee-$i"]) && $_POST["employee-$i"] != "") {
-			update_post_meta($post_id, "employee-$j", wp_kses_post($_POST["employee-$i"]));
-			$j++;
+		$edited = false;
+		if (isset($_POST["employee-$i-name"]) && $_POST["employee-$i-name"] != "") {
+			update_post_meta($post_id, "employee-$j-name", wp_kses_post($_POST["employee-$i-name"]));
+			$edited = true;
 		}
+		if (isset($_POST["employee-$i-position"]) && $_POST["employee-$i-position"] != "") {
+			update_post_meta($post_id, "employee-$j-position", wp_kses_post($_POST["employee-$i-position"]));
+			$edited = true;
+		}
+		if (isset($_POST["employee-$i-description"]) && $_POST["employee-$i-description"] != "") {
+			update_post_meta($post_id, "employee-$j-description", wp_kses_post($_POST["employee-$i-description"]));
+			$edited = true;
+		}
+		if (isset($_POST["employee-$i-qoute"]) && $_POST["employee-$i-qoute"] != "") {
+			update_post_meta($post_id, "employee-$j-qoute", wp_kses_post($_POST["employee-$i-qoute"]));
+			$edited = true;
+		}
+		if ($edited)
+			$j++;
 	}
 	update_post_meta($post_id, "employeeCount", $j - 1);
 }, 10, 3);
