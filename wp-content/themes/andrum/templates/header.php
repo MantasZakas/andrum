@@ -1,13 +1,15 @@
-<header class="banner">
-	<div class="container d-flex justify-content-end header__top">
-		<p>+370 527 27092</p>
-		<div class="header__dash my-auto"></div>
-		<p>pardavimai@andrum.lt</p>
-	</div>
+<div class="container d-flex justify-content-end header__top">
+	<p>+370 527 27092</p>
+	<div class="header__dash my-auto"></div>
+	<p>pardavimai@andrum.lt</p>
+</div>
+<header class="banner sticky-top">
 	<div class="header__nav d-flex align-items-center">
 		<div class="container h-100">
 			<nav class="navbar navbar-expand-sm p-0 justify-content-between h-100">
-				<a class="navbar-brand" href="#"><img class="header__logo" alt="Site Logo" src="<?php echo get_template_directory_uri()?>/img/logo-full.svg"></a>
+				<a class="navbar-brand" href="<?php echo get_home_url() ?>">
+					<img class="header__logo" alt="Site Logo" src="<?php echo get_template_directory_uri()?>/img/logo-full.svg">
+				</a>
 				<?php wp_nav_menu([
 					'menu' => 'top_menu',
 					'container' => '',

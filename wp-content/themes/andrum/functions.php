@@ -42,8 +42,63 @@ add_filter ( 'nav_menu_css_class', function ($classes, $item) {
 	}
 	return $classes;
 }, 10, 2 );
-
 add_filter ( 'nav_menu_link_attributes', function ($atts) {
 	$atts ['class'] = "nav-link align-self-stretch py-0 header__link";
 	return $atts;
 }, 100, 1 );
+
+//add metaboxes for employees
+	function employees_meta($page) {
+	wp_nonce_field(basename(__FILE__), "employees-nonce");
+	$totalEmployees = 5;
+	if (get_post_meta($page->ID, "employeeCount", true) > 5)
+		$totalEmployees = get_post_meta($page->ID, "employeeCount", true);
+		for ($i=1; $i<=$totalEmployees; $i++ ) {?>
+			<div>
+				<label for="employee-<?= $i?>">Employee no. <?= $i?>:</label>
+				<input name="employee-<?= $i?>" type="text" value="<?php echo get_post_meta($page->ID, "employee-$i", true) ?>">
+			</div>
+		<?php } ?>
+	<button type="button" id="addMore" class="components-button editor-post-preview is-button is-default is-large" style="margin-top: 5px">Add new employee</button>
+	<input type="hidden" id="fieldCount" name="fieldCount" value="<?= $totalEmployees ?>">
+	<?php
+}
+
+function add_employees_meta_js($hook) {
+	if ('post.php' !== $hook) {
+		return;
+	}
+	wp_enqueue_script( 'employees-meta', get_template_directory_uri().'/js/employees-meta.js' );
+}
+
+add_action( 'add_meta_boxes', function($post_type, $post) {
+	$pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
+	if ($pageTemplate == "about-us.php") {
+		add_meta_box('employees_meta', 'Employees', 'employees_meta', 'page', 'normal');
+		add_action('admin_enqueue_scripts', 'add_employees_meta_js');
+	}
+}, 10, 2);
+
+add_action("save_post", function($post_id, $post, $update) {
+	if (!isset($_POST["employees-nonce"]) ||
+		!wp_verify_nonce($_POST["employees-nonce"], basename(__FILE__)))
+	return $post_id;
+	if(!current_user_can("edit_post", $post_id))
+		return $post_id;
+	
+	foreach (get_post_meta($post_id) as $k=>$v) { //replace all current employees with blank strings
+		if (strstr($k, "employee-"))
+			update_post_meta($post_id, $k, "");
+	}
+		
+	$totalEmployees = 5;
+	$j = 1; //count filled fields
+	if (isset($_POST['fieldCount'])) $totalEmployees = wp_kses_post($_POST['fieldCount']);
+	for ($i=1; $i<=$totalEmployees; $i++ ) {
+		if (isset($_POST["employee-$i"]) && $_POST["employee-$i"] != "") {
+			update_post_meta($post_id, "employee-$j", wp_kses_post($_POST["employee-$i"]));
+			$j++;
+		}
+	}
+	update_post_meta($post_id, "employeeCount", $j - 1);
+}, 10, 3);
