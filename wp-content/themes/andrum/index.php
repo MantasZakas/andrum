@@ -1,10 +1,22 @@
 <!-- Current project banner -->
 <h1 class="page__title--homepage text-center">Šiuo metu vystomi projektai</h1>
-
-
+<div class="row">
+<div class="col-12 banner__wrapper">
+		<?php
+		$currentProject = get_posts ( [ 
+				'numberposts' => 1,
+				'category_name' => 'current-projects'
+		] );
+		?>
+		<img class="backgroundImage" src="<?= get_the_post_thumbnail_url($currentProject[0]) ?>">
+		<div class="banner__text whiteText">
+			<h3 class="banner__text--title"><?= get_the_title($currentProject[0]) ?></h3>
+			<p class="banner__text--excerpt"><?= get_the_excerpt($currentProject[0]) ?></p>
+		</div>
+	</div>
+</div>
 <!-- Finished projects -->
 <h2 class="page__title--homepage text-center">Įgyvendinti projektai</h2>
-
 <div class="row">
 	<?php
 	$projects = get_posts ( [ 
@@ -15,7 +27,7 @@
 	?>
 	<div class="col-md-6 projectCard__wrapper">
 		<img class="projectCard__image" src="<?= get_the_post_thumbnail_url($p) ?>">
-		<div class="projectCard__text">
+		<div class="projectCard__text whiteText">
 			<h3 class="projectCard__text--title"><?= get_the_title($p) ?></h3>
 			<p class="projectCard__text--excerpt"><?= get_the_excerpt($p) ?></p>
 		</div>
