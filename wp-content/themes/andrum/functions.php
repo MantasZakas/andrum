@@ -50,6 +50,16 @@ add_filter ( 'nav_menu_link_attributes', function ($atts) {
 //add metaboxes for employees
 function employees_meta($page) {
 	wp_nonce_field(basename(__FILE__), "employees-nonce");
+	$args = array(
+			'post_type' => 'attachment',
+			'post_mime_type' =>'image',
+			'post_status' => 'inherit',
+	);
+	$query_images = new WP_Query( $args );
+	$images = array();
+	foreach ( $query_images->posts as $image) {
+		$images[$image->ID]= end(explode('/', $image->guid));
+	}
 	$totalEmployees = 5;
 	if (get_post_meta($page->ID, "employeeCount", true) > 5)
 		$totalEmployees = get_post_meta($page->ID, "employeeCount", true);
@@ -68,6 +78,16 @@ function employees_meta($page) {
 				<label for="employee-<?= $i?>-qoute">Qoute:</label>
 				<br>
 				<textarea rows="4" cols="60" name="employee-<?= $i?>-qoute"><?php echo get_post_meta($page->ID, "employee-$i-qoute", true) ?></textarea>
+				<br>
+				<label for="employee-<?= $i ?>-image">Select image from media library:</label>
+				<br>
+				<?php $currentImage = get_post_meta($page->ID, "employee-$i-image", true) ?>
+				<select name="employee-<?= $i ?>-image">
+					<option>( not selected )</option>
+					<?php foreach ($images as $id=>$image) { ?>
+						<option value="<?= $id ?>" <?= ($currentImage == $id ? "selected" : "") ?>><?= $image ?></option>
+					<?php } ?>
+				</select>
 				<hr>
 			</div>
 		<?php } ?>
@@ -124,8 +144,59 @@ add_action("save_post", function($post_id, $post, $update) {
 			update_post_meta($post_id, "employee-$j-qoute", wp_kses_post($_POST["employee-$i-qoute"]));
 			$edited = true;
 		}
+		if (isset($_POST["employee-$i-image"]) && $_POST["employee-$i-image"] != "") {
+			update_post_meta($post_id, "employee-$j-image", wp_kses_post($_POST["employee-$i-image"]));
+			$edited = true;
+		}
 		if ($edited)
 			$j++;
 	}
 	update_post_meta($post_id, "employeeCount", $j - 1);
 }, 10, 3);
+
+
+
+
+	function get_images_from_media_library() {
+		$args = array(
+				'post_type' => 'attachment',
+				'post_mime_type' =>'image',
+				'post_status' => 'inherit',
+		);
+		$query_images = new WP_Query( $args );
+		$images = array();
+		foreach ( $query_images->posts as $image) {
+			$images[]= $image->guid;
+			print_r($image);
+		}
+// 		print_r($query_images);
+// 		print_r($images);
+		return $images;
+	}
+
+
+	function display_images_from_media_library() {
+		
+		$imgs = get_images_from_media_library();
+		$html = '<div id="media-gallery">';
+		
+		foreach($imgs as $img) {
+			
+			$html .= '<img src="' . $img . '" alt="" />';
+			
+		}
+		
+		$html .= '</div>';
+		
+		return $html;
+		
+	}
+
+
+
+
+
+
+
+
+
