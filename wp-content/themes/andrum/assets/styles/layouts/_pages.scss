@@ -137,6 +137,14 @@
 	&__card {
 		margin-top: 40px;
 	}
+	&__image {
+		height: 380px;
+		width: 380px;
+		position: absolute;
+		z-index: -1;
+		object-fit: cover;
+		object-position: 50% 0;
+	}
 	&__description {
 		background: transparent;
 		color: transparent;

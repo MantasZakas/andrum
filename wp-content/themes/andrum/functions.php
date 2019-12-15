@@ -82,7 +82,7 @@ function employees_meta($page) {
 				<br>
 				<?php $currentImage = get_post_meta($page->ID, "employee-$i-image", true) ?>
 				<select name="employee-<?= $i ?>-image">
-					<option>( not selected )</option>
+					<option value="">( not selected )</option>
 					<?php foreach ($images as $id=>$image) { ?>
 						<option value="<?= $id ?>" <?= ($currentImage == $id ? "selected" : "") ?>><?= $image ?></option>
 					<?php } ?>
@@ -93,7 +93,7 @@ function employees_meta($page) {
 	<button type="button" id="addMore" class="components-button editor-post-preview is-button is-default is-large" style="margin-top: 5px">Add new employee</button>
 	<input type="hidden" id="fieldCount" name="fieldCount" value="<?= $totalEmployees ?>">
 	<div id="optionsBackup" style="display: none">
-		<option>( not selected )</option>
+		<option value="">( not selected )</option>
 		<?php foreach ($images as $id=>$image) { ?>	
 			<option value="<?= $id ?>"><?= $image ?></option>
 		<?php } ?>

@@ -2,7 +2,6 @@ window.onload = function() {
 	let moreButton = document.getElementById("addMore");
 	let fieldCount =  document.getElementById("fieldCount");
 	let selectOptions = document.getElementById("optionsBackup").innerHTML;
-	console.log(selectOptions);
 	moreButton.addEventListener("click", function() {
 		fieldCount.value++;
 		let newInput = document.createElement('div');

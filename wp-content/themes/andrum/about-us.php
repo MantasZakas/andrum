@@ -12,7 +12,7 @@
 		for ($i=1; $i <= $totalEmployees; $i++) {
 		?>
 		<div class="col-md-4 page__card">
-			<div class="fakeimage"></div>
+			<img class="page__image" src="<?= wp_get_attachment_image_url(get_post_meta(get_the_ID(), "employee-$i-image", true), '') ?>">
 			<div class="page__description">
 				<div class="page__description--top">
 					<p class="page__description--text1 text-center">
