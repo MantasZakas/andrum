@@ -22,7 +22,6 @@ foreach ( $sage_includes as $file ) {
 	if (! $filepath = locate_template ( $file )) {
 		trigger_error ( sprintf ( __ ( 'Error locating %s for inclusion', 'sage' ), $file ), E_USER_ERROR );
 	}
-
 	require_once $filepath;
 }
 unset ( $file, $filepath );
@@ -93,6 +92,12 @@ function employees_meta($page) {
 		<?php } ?>
 	<button type="button" id="addMore" class="components-button editor-post-preview is-button is-default is-large" style="margin-top: 5px">Add new employee</button>
 	<input type="hidden" id="fieldCount" name="fieldCount" value="<?= $totalEmployees ?>">
+	<div id="optionsBackup" style="display: none">
+		<option>( not selected )</option>
+		<?php foreach ($images as $id=>$image) { ?>	
+			<option value="<?= $id ?>"><?= $image ?></option>
+		<?php } ?>
+	</div>
 	<?php
 }
 
@@ -153,50 +158,3 @@ add_action("save_post", function($post_id, $post, $update) {
 	}
 	update_post_meta($post_id, "employeeCount", $j - 1);
 }, 10, 3);
-
-
-
-
-	function get_images_from_media_library() {
-		$args = array(
-				'post_type' => 'attachment',
-				'post_mime_type' =>'image',
-				'post_status' => 'inherit',
-		);
-		$query_images = new WP_Query( $args );
-		$images = array();
-		foreach ( $query_images->posts as $image) {
-			$images[]= $image->guid;
-			print_r($image);
-		}
-// 		print_r($query_images);
-// 		print_r($images);
-		return $images;
-	}
-
-
-	function display_images_from_media_library() {
-		
-		$imgs = get_images_from_media_library();
-		$html = '<div id="media-gallery">';
-		
-		foreach($imgs as $img) {
-			
-			$html .= '<img src="' . $img . '" alt="" />';
-			
-		}
-		
-		$html .= '</div>';
-		
-		return $html;
-		
-	}
-
-
-
-
-
-
-
-
-
