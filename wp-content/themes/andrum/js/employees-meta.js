@@ -1,3 +1,4 @@
+//new employee button script
 window.onload = function() {
 	let moreButton = document.getElementById("addMore");
 	let fieldCount =  document.getElementById("fieldCount");

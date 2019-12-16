@@ -116,6 +116,7 @@ add_action( 'add_meta_boxes', function($post_type, $post) {
 	}
 }, 10, 2);
 
+//save metabox content for employees
 add_action("save_post", function($post_id, $post, $update) {
 	if (!isset($_POST["employees-nonce"]) ||
 		!wp_verify_nonce($_POST["employees-nonce"], basename(__FILE__)))

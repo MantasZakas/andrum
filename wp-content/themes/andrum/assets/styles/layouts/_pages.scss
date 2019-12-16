@@ -100,14 +100,6 @@
 	text-decoration: none;
 }
 
-.fakeimage {
-	height: 380px;
-	width: 380px;
-	background-image: linear-gradient(yellow, black);
-	position: absolute;
-	z-index: -1;
-}
-
 .page {
 	&__title {
 		&--homepage {
