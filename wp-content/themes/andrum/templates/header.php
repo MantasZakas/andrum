@@ -14,7 +14,8 @@
 					'menu' => 'top_menu',
 					'container' => '',
 					'items_wrap' => '<ul id="%1$s" class="navbar-nav h-100 p-0">%3$s</ul>',
-					'menu_class' => 'nav-item d-flex'
+					'menu_class' => 'nav-item d-flex',
+					'walker'  => new Child_Wrap()
 				])?>
 <!-- 				<ul class="navbar-nav h-100 p-0"> -->
 <!-- 					<li class="nav-item d-flex"><a -->
@@ -27,4 +28,3 @@
 		</div>
 	</div>
 </header>
-

@@ -24,6 +24,7 @@ $header_height: 80px;
 		font-size: 16px;
 		line-height: $header_height;
 		transition: 500ms;
+		text-transform: uppercase;
 		&--active {
 			border-bottom: solid 2px $_ACTIVE;
 		}
@@ -35,5 +36,9 @@ $header_height: 80px;
 	&__logo {
 		width: 165px;
   		height: 56px;
+	}
+	&__dropdown {
+		background: $_MAIN;
+		border-radius: 0;
 	}
 }

@@ -35,7 +35,7 @@ add_action ( 'init', function () {
 
 //add custom classes to menu <li> and <a> tags
 add_filter ( 'nav_menu_css_class', function ($classes, $item) {
-	$classes [] = 'nav-item d-flex';
+	$classes [] = 'nav-item d-flex justify-content-center';
 	if (in_array('current-menu-item', $classes) ){
 		$classes[] = 'header__link--active';
 	}
@@ -45,6 +45,19 @@ add_filter ( 'nav_menu_link_attributes', function ($atts) {
 	$atts ['class'] = "nav-link align-self-stretch py-0 header__link";
 	return $atts;
 }, 100, 1 );
+
+//create a walker to handle dropdown navs
+class Child_Wrap extends Walker_Nav_Menu {
+	function start_lvl(&$output, $depth = 0, $args = array()) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "\n<div class='dropdown'>$indent<ul class=\"dropdown-menu dropdown-menu-right header__dropdown\">\n";
+	}
+		
+	function end_lvl(&$output, $depth = 0, $args = array()) {
+		$indent = str_repeat("\t", $depth);
+		$output .= "$indent</ul></div>\n";
+	}
+}
 
 //add metaboxes for employees
 function employees_meta($page) {
@@ -164,4 +177,9 @@ add_action("save_post", function($post_id, $post, $update) {
 //register js to change the height of pictures
 add_action('wp_head', function() {
 	wp_enqueue_script( 'fixed-height', get_template_directory_uri().'/js/fixed-height.js' );
+});
+
+//register js to handle nav dropdown
+add_action('wp_head', function() {
+	wp_enqueue_script( 'hover-dropdown', get_template_directory_uri().'/js/hover-dropdown.js' );
 });
