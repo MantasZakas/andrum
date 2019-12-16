@@ -101,6 +101,7 @@ function employees_meta($page) {
 	<?php
 }
 
+//register js to add more employee metaboxes
 function add_employees_meta_js($hook) {
 	if ('post.php' !== $hook) {
 		return;
@@ -159,3 +160,8 @@ add_action("save_post", function($post_id, $post, $update) {
 	}
 	update_post_meta($post_id, "employeeCount", $j - 1);
 }, 10, 3);
+
+//register js to change the height of pictures
+add_action('wp_head', function() {
+	wp_enqueue_script( 'fixed-height', get_template_directory_uri().'/js/fixed-height.js' );
+});

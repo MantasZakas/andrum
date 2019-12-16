@@ -57,7 +57,7 @@
 		?>
 		<div class="col-md-4">
 			<div class="newsCard__wrapper h-100">
-				<img class="newsCard__image" src="<?= get_the_post_thumbnail_url($n) ?>">
+				<img class="newsCard__image fixedHeight" src="<?= get_the_post_thumbnail_url($n) ?>">
 				<h3 class="newsCard__title">
 					<a class="newsCard__title--link" href="<?= get_the_guid($n) ?>">
 						<?= get_the_title($n) ?>

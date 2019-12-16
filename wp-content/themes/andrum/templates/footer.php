@@ -28,7 +28,7 @@ define('CONTACTS_ID', 63);
 				<div class="row footer__card">
 					<div class="col-4">
 						<a href="<?= get_the_guid($p) ?>">
-							<img class="footer__image" src="<?= get_the_post_thumbnail_url($p) ?>">
+							<img class="footer__image fixedHeight" src="<?= get_the_post_thumbnail_url($p) ?>">
 						</a>
 					</div>				
 					<div class="col-8 footer__text">
@@ -55,7 +55,7 @@ define('CONTACTS_ID', 63);
 				<div class="row footer__card">
 					<div class="col-4">
 						<a href="<?= get_the_guid($n) ?>">
-							<img class="footer__image" src="<?= get_the_post_thumbnail_url($n) ?>">
+							<img class="footer__image fixedHeight" src="<?= get_the_post_thumbnail_url($n) ?>">
 						</a>
 					</div>				
 					<div class="col-8 footer__text d-flex align-items-center">
