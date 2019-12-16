@@ -174,12 +174,7 @@ add_action("save_post", function($post_id, $post, $update) {
 	update_post_meta($post_id, "employeeCount", $j - 1);
 }, 10, 3);
 
-//register js to change the height of pictures
+//register custom js
 add_action('wp_head', function() {
-	wp_enqueue_script( 'fixed-height', get_template_directory_uri().'/js/fixed-height.js' );
-});
-
-//register js to handle nav dropdown
-add_action('wp_head', function() {
-	wp_enqueue_script( 'hover-dropdown', get_template_directory_uri().'/js/hover-dropdown.js' );
+	wp_enqueue_script( 'custom-scripts', get_template_directory_uri().'/js/custom-scripts.js' );
 });
