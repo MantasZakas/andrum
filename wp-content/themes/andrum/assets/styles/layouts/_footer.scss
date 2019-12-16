@@ -14,16 +14,29 @@
 		&--main {
 			margin-bottom: 20px;
 		}
+		&--link {
+			color: white;
+		}
+		&--link:hover {
+			color: $_ACTIVE;
+			text-decoration: none;
+		}
 	}
 	&__text{
 		font-size: 12px;
   		line-height: 1.5;
 	}
 	&__link {
-		font-family: PlayfairDisplay;
   		font-size: 14px;
   		line-height: 1.43;
-  		font-family: 'Montserrat', sans-serif;
+		color: white;
+		&--wi {
+			font-family: 'Montserrat', sans-serif;
+		}
+	}
+	&__link:hover {
+		color: $_ACTIVE;
+		text-decoration: none;
 	}
 	&__image {
 		width: 100%;
