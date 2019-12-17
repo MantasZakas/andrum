@@ -29,7 +29,7 @@
 	] );
 	foreach ( $projects as $p ) {
 	?>
-	<div class="col-md-6 projectCard__wrapper">
+	<div class="col-lg-6 projectCard__wrapper">
 		<img class="projectCard__image" src="<?= get_the_post_thumbnail_url($p) ?>">
 		<div class="projectCard__text whiteText">
 			<h3 class="projectCard__text--title">

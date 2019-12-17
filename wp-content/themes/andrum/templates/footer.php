@@ -15,9 +15,6 @@ define('CONTACTS_ID', 63);
   					<?= get_post(ABOUT_US_ID)->post_content ?>
   				</div>
   			</div>
-  			
-  			
-  			
   			<div class="col-12 col-md-6 d-lg-none">
   				<h3 class="footer__heading footer__heading--main">Kontaktai</h3>
   				<?php $contacts = get_post(CONTACTS_ID) ?>
@@ -30,11 +27,6 @@ define('CONTACTS_ID', 63);
   					</div>
   				</div>
   			</div>
-  			
-  			
-  			
-  			
-  			
 <!--   		CURRENT PROJECTS -->
   			<div class="col-12 col-md-6 col-lg-3">
   				<h3 class="footer__heading footer__heading--main">Plėtojami projektai</h3>
