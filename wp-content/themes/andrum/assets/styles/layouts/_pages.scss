@@ -77,31 +77,6 @@
 	}
 }
 
-//index page media querries
-@media (max-width: 768px) { //tablet
-	.banner__text {
-		padding: 400px 110px 0 110px;
-	}
-}
-@media (max-width: 576px) { //mobile
-	.banner {
-		&__wrapper {
-			height: 100vh;
-		}
-		&__text {
-			padding: 100px 20px 0 20px;
-			text-align: center;
-			&--title {
-				font-size: 40px;
-			}
-		}
-	}
-	.projectCard__text {
-		padding: 80px 80px 0 80px;
-		text-align: center;
-	}
-}
-
 .newsCard {
 	&__wrapper {
 		border: solid 1px $_BORDER;
@@ -140,7 +115,33 @@
 	text-decoration: none;
 }
 
+//index page media querries
+@media (max-width: 768px) { //tablet
+	.banner__text {
+		padding: 400px 110px 0 110px;
+	}
+}
+@media (max-width: 576px) { //mobile
+	.banner {
+		&__wrapper {
+			height: 100vh;
+		}
+		&__text {
+			padding: 100px 20px 0 20px;
+			text-align: center;
+			&--title {
+				font-size: 40px;
+			}
+		}
+	}
+	.projectCard__text {
+		padding: 80px 80px 0 80px;
+		text-align: center;
+	}
+}
+
 //about us page classes
+
 .page {
 	&__title {
 		&--homepage {
@@ -182,6 +183,7 @@
 		background: transparent;
 		color: transparent;
 		transition: 1000ms;
+		width: 380px;
 		&--top {
 			height: 380px;
 			width: 380px;
@@ -192,7 +194,7 @@
 			font-family: 'Montserrat', sans-serif;
 			line-height: 1.43;
 		}
-		&--text1 {
+		&--text2 {
 			font-size: 16px !important;
 			font-family: 'Playfair Display', serif;
 			line-height: 1.38;
@@ -206,6 +208,61 @@
 	&__description:hover *{
 		transition: 500ms;
 		color: white;
+	}
+}
+
+//about us page media querries
+@media (max-width: 995px) {
+	.aboutUs {
+		&__image {
+			height: 350px;
+			width: 350px;
+		}
+		&__description {
+			width: 350px;
+			&--top {
+				padding: 25px 25px 0 25px;
+				height: 350px;
+				width: 350px;
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.aboutUs {
+		&__image {
+			height: 320px;
+			width: 320px;
+		}
+		&__description {
+			width: 320px;
+			&--top {
+				padding: 15px 15px 0 15px;
+				height: 320px;
+				width: 320px;
+			}
+			&--text2 {
+				font-size: 14px !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	.aboutUs {
+		&__image {
+			height: 95vw;
+			width: 95vw;
+		}
+		&__description {
+			width: 95vw;
+			&--top {
+				padding: 10px 10px 0 10px;
+				height: 95vw;
+				width: 95vw;
+			}
+		}
 	}
 }
 
