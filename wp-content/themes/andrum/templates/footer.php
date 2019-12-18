@@ -15,17 +15,8 @@ define('CONTACTS_ID', 63);
   					<?= get_post(ABOUT_US_ID)->post_content ?>
   				</div>
   			</div>
-  			<div class="col-12 col-md-6 d-lg-none">
-  				<h3 class="footer__heading footer__heading--main">Kontaktai</h3>
-  				<?php $contacts = get_post(CONTACTS_ID) ?>
-  				<div class="row">
-  					<div class="col-3">
-  						<img class="footer__image" src="<?= get_the_post_thumbnail_url($contacts) ?>">
-  					</div>
-  					<div class="col-9 footer__text">
-  						<?= $contacts->post_content ?>
-  					</div>
-  				</div>
+  			<div id="footer__contacts--copy" class="col-12 col-md-6 d-lg-none">
+<!--   				Copied by js -->
   			</div>
 <!--   		CURRENT PROJECTS -->
   			<div class="col-12 col-md-6 col-lg-3">
@@ -83,7 +74,7 @@ define('CONTACTS_ID', 63);
 				<?php } ?>
   			</div>
 <!--   		CONTACTS -->
-  			<div class="col-12 col-md-6 col-lg-3 d-none d-lg-block">
+  			<div id="footer__contacts--master" class="col-12 col-md-6 col-lg-3 d-none d-lg-block">
   				<h3 class="footer__heading footer__heading--main">Kontaktai</h3>
   				<?php $contacts = get_post(CONTACTS_ID) ?>
   				<div class="row">

@@ -17,8 +17,17 @@ window.onload = function() {
 	};
 	
 	//set the height of images with fixedHeight class to a 4:3 ratio to the height
-	let images = document.getElementsByClassName("fixedHeight");
-	for (let i = 0; i < images.length; i++) {
-		images[i].style.height = (images[i].offsetWidth / 1.33330) + "px";
+	function resizeImages (images) {
+		for (let i = 0; i < images.length; i++) {
+			images[i].style.height = (images[i].offsetWidth / 1.33330) + "px";
+		};
 	}
+	let images = document.getElementsByClassName("fixedHeight");
+	resizeImages (images);
+	window.addEventListener('resize', function() {
+		resizeImages (images);
+	})
+	
+	//copy a part of the footer for diplaying on small devices
+	document.getElementById("footer__contacts--copy").innerHTML = document.getElementById("footer__contacts--master").innerHTML
 }
