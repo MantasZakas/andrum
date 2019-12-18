@@ -35,14 +35,15 @@ add_action ( 'init', function () {
 
 //add custom classes to menu <li> and <a> tags
 add_filter ( 'nav_menu_css_class', function ($classes, $item) {
-	$classes [] = 'nav-item d-flex justify-content-center';
+	$classes [] = 'nav-item d-flex align-items-center header__navButton';
 	if (in_array('current-menu-item', $classes) ){
 		$classes[] = 'header__link--active';
 	}
 	return $classes;
 }, 10, 2 );
 add_filter ( 'nav_menu_link_attributes', function ($atts) {
-	$atts ['class'] = "nav-link align-self-stretch py-0 header__link";
+	$atts ['class'] = "nav-link header__link p-0";
+	
 	return $atts;
 }, 100, 1 );
 

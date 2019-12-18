@@ -4,27 +4,24 @@
 	<p>pardavimai@andrum.lt</p>
 </div>
 <header class="banner sticky-top">
-	<div class="header__nav d-flex align-items-center">
-		<div class="container h-100">
-			<nav class="navbar navbar-expand-sm p-0 justify-content-between h-100">
-				<a class="navbar-brand" href="<?php echo get_home_url() ?>">
+	<div class="">
+		<nav class="navbar navbar-expand-md p-0 header__nav">
+			<div class="container">
+				<a class="navbar-brand p-0" href="<?php echo get_home_url() ?>">
 					<img class="header__logo" alt="Site Logo" src="<?php echo get_template_directory_uri()?>/img/logo-full.svg">
 				</a>
+				<button class="navbar-toggler header__button" type="button" data-toggle="collapse" data-target="#mainNav">
+    				<i class="fas fa-bars"></i>
+  				</button>
 				<?php wp_nav_menu([
 					'menu' => 'top_menu',
-					'container' => '',
-					'items_wrap' => '<ul id="%1$s" class="navbar-nav h-100 p-0">%3$s</ul>',
-					'menu_class' => 'nav-item d-flex',
+					'container' => 'div',
+					'container_class' => 'collapse navbar-collapse d-md-flex justify-content-end',
+					'container_id' => 'mainNav',
+					'menu_class' => 'navbar-nav',
 					'walker'  => new Child_Wrap()
 				])?>
-<!-- 				<ul class="navbar-nav h-100 p-0"> -->
-<!-- 					<li class="nav-item d-flex"><a -->
-<!-- 						class="nav-link align-self-stretch py-0 header__link" href="#">Link -->
-<!-- 							1</a></li> -->
-<!-- 					<li class="nav-item d-flex"><a class="nav-link align-self-stretch py-0 header__link" href="#">Link 2</a></li> -->
-<!-- 					<li class="nav-item d-flex"><a class="nav-link align-self-stretch py-0 header__link" href="#">Link 3</a></li> -->
-<!-- 				</ul> -->
-			</nav>
-		</div>
+			</div>
+		</nav>
 	</div>
 </header>
